@@ -10,17 +10,21 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let questions = ["In the Metroid Series, what is the name of the main protagonist?", "Who is the creator of the Super Mario Bros Series?", "As of 2020 who is the current president of Nintendo of America?"]
+    let questions = ["In the Metroid Series, what is the name of the main protagonist?",
+                     "Who is the creator of the Super Mario Bros Series?",
+                     "As of 2020 who is the current president of Nintendo of America?"]
     
-    let answers = [["Samus Aran", "Solid Snake", "Séamus Morgan", "Sepiroth"], ["Shigeru Miyamoto", "Hayao Miyazaki", "Hideo Kojima", "Reggie Fils-Aimé"], ["Doug Bowser", "Geoff Keighley", "Reggie Fils-Aimé", "Minoru Arakawa"]]
-    
+    let answers = [["Samus Aran", "Solid Snake", "Séamus Morgan", "Sepiroth"],
+                   ["Shigeru Miyamoto", "Hayao Miyazaki", "Hideo Kojima", "Reggie Fils-Aimé"],
+                   ["Doug Bowser", "Geoff Keighley", "Reggie Fils-Aimé", "Minoru Arakawa"]]
+
     let categories = ["Videogames", "Movies/Media", "Literature"]
     
     // Variables
     var currentQuestion = 0
-    var rightAnswerPlacement: UInt32 = 0
+    var rightAnswerPlacement:UInt32 = 0
     var currentCategory = 0
-    
+    var points: Int = 0
     
     // Question Label
     @IBOutlet weak var questionLabel: UILabel!
@@ -36,13 +40,22 @@ class ViewController: UIViewController {
     @IBAction func answerButtons(_ sender: UIButton) {
         if (sender.tag == Int(rightAnswerPlacement)){
             print("RIGHT!")
+            points += 1
         } else {
             print("WRONG!!!")
         }
         
         if (currentQuestion != questions.count) {
             newQuestion()
+        } else {
+            performSegue(withIdentifier: "showScore", sender: self)
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let ScoreViewController = segue.destination as! ScoreViewController
+        ScoreViewController.sumOfPoints = String(points)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -66,7 +79,8 @@ class ViewController: UIViewController {
                 button.setTitle(answers[currentQuestion][0], for: .normal)
             } else {
                 button.setTitle(answers[currentQuestion][x], for: .normal)
-                x = 2
+                x += 1
+                
             }
         }
         currentQuestion += 1
