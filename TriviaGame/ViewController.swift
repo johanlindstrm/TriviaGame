@@ -18,13 +18,14 @@ class ViewController: UIViewController {
                    ["Shigeru Miyamoto", "Hayao Miyazaki", "Hideo Kojima", "Reggie Fils-Aimé"],
                    ["Doug Bowser", "Geoff Keighley", "Reggie Fils-Aimé", "Minoru Arakawa"]]
 
-    let categories = ["Videogames", "Movies/Media", "Literature"]
+//    let categories = ["Videogames", "Movies/Media", "Literature"]
     
     // Variables
     var currentQuestion = 0
     var rightAnswerPlacement:UInt32 = 0
     var currentCategory = 0
     var points: Int = 0
+    var displayCategory : String = " "
     
     // Question Label
     @IBOutlet weak var questionLabel: UILabel!
@@ -33,13 +34,16 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        categoryLabel.text = displayCategory
+        newQuestion()
+//        displayCategory()
         // Do any additional setup after loading the view.
     }
     
     // Buttons, linked with tags
     @IBAction func answerButtons(_ sender: UIButton) {
         if (sender.tag == Int(rightAnswerPlacement)){
-            print("RIGHT!")
+            print("CORRECT!")
             points += 1
         } else {
             print("WRONG!!!")
@@ -59,8 +63,8 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        newQuestion()
-        displayCategory()
+//        newQuestion()
+//        displayCategory()
     }
     
     func newQuestion() {
@@ -87,9 +91,9 @@ class ViewController: UIViewController {
 
     }
     
-    func displayCategory() {
-        categoryLabel.text = categories[currentCategory]
-    }
+//    func displayCategory() {
+//        categoryLabel.text = categories[currentCategory]
+//    }
 
 }
 

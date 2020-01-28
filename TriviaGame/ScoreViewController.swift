@@ -18,6 +18,7 @@ class ScoreViewController: UIViewController {
         super.viewDidLoad()
 
         scoreLabel.text = sumOfPoints
+        print(sumOfPoints)
         
         // Do any additional setup after loading the view.
     }
