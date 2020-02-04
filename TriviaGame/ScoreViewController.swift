@@ -17,8 +17,12 @@ class ScoreViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        scoreLabel.text = sumOfPoints
+        scoreLabel.text = sumOfPoints + "/3"
         print(sumOfPoints)
+        
+        if (sumOfPoints == "3") {
+            scoreLabel.text = "Congrats you win a trophy"
+        }
         
         // Do any additional setup after loading the view.
     }

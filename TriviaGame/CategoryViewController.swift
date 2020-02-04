@@ -12,7 +12,9 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
 
     @IBOutlet weak var categoryPicker: UIPickerView!
     
-    let categories = ["Category 1", "Category 2", "Category 3", "Category 4", "Category 5", "Category 6"]
+    let categories = ["Videogames", "Film/Media", "Sport", "Geography"]
+    
+    var selectedCategories : String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,10 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ViewController = segue.destination as! ViewController
-        ViewController.displayCategory = "\(categories)"
+        let ViewController = segue.destination as! GameViewController
+        if let category = selectedCategories {
+            ViewController.displayCategory = category
+        }
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -39,10 +43,9 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedCategories = categories[row] as String
+        selectedCategories = categories[row] as String
 
-        print(selectedCategories)
-
+        print(selectedCategories!)
     }
 
 
