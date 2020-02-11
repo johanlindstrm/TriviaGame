@@ -12,6 +12,9 @@ class ScoreViewController: UIViewController {
 
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var scoreProgressView: CircularProgressView!
+    @IBOutlet weak var backButton: UIButton!
+//    @IBOutlet weak var trophyImage: UIImageView!
     var sumOfPoints = String()
     
     override func viewDidLoad() {
@@ -20,22 +23,39 @@ class ScoreViewController: UIViewController {
         scoreLabel.text = sumOfPoints + "/3"
         print(sumOfPoints)
         
-        if (sumOfPoints == "3") {
-            scoreLabel.text = "Congrats you win a trophy"
-        }
+//        if (sumOfPoints == "3") {
+//            scoreLabel.text = "Congrats you win a trophy"
+//        }
+        
+        scoreProgressView.trackColor = UIColor.gray
+        scoreProgressView.progressColor = UIColor.red
+//        trophyWon()
         
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidAppear(_ animated: Bool) {
+        scoreProgressView.setProgressWithAnimation(duration: 2, value: Float(sumOfPoints)!)
     }
-    */
+    
+    
+    
+    
+    
+    
+    
+//    func trophyWon() {
+//
+//        if (sumOfPoints == "3") {
+//            print("Trophy won!")
+//
+//            trophyImage.isHidden = false
+//            backButton.setTitle("Collect", for: .normal)
+//
+//        } else {
+//            trophyImage.isHidden = true
+//        }
+//
+//    }
 
 }

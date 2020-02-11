@@ -9,7 +9,8 @@
 import UIKit
 
 class StartViewController: UIViewController, UITextFieldDelegate {
-
+//TODO
+//inloggning
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var exampleName: UILabel!

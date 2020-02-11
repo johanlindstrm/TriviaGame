@@ -10,14 +10,6 @@ import UIKit
 
 class GameViewController: UIViewController {
     
-//    let questions = ["In the Metroid Series, what is the name of the main protagonist?",
-//                     "Who is the creator of the Super Mario Bros Series?",
-//                     "As of 2020 who is the current president of Nintendo of America?"]
-//
-//    let answers = [["Samus Aran", "Solid Snake", "Séamus Morgan", "Sepiroth"],
-//                   ["Shigeru Miyamoto", "Hayao Miyazaki", "Hideo Kojima", "Reggie Fils-Aimé"],
-//                   ["Doug Bowser", "Geoff Keighley", "Reggie Fils-Aimé", "Minoru Arakawa"]]
-//
     let gameQuestions = ["In the Metroid Series, what is the name of the main protagonist?",
                          "Who is the creator of the Super Mario Bros Series?",
                          "As of 2020 who is the current president of Nintendo of America?"]
@@ -45,33 +37,76 @@ class GameViewController: UIViewController {
     let geographyAnswers = [["China", "Russia", "USA", "India"],
                             ["50", "51", "52", "49"],
                             ["Northen Ireland", "Hungary", "Romania", "Yemen"]]
-
-//    let categories = ["Videogames", "Movies/Media", "Literature"]
     
     // Variables
     var currentQuestion = 0
     var rightAnswerPlacement:UInt32 = 0
-//    var currentCategory = 0
     var points: Int = 0
     var displayCategory : String = " "
     var pointsThisRound = 0
-//    var q1 = Question(question: "Hello?", answer: ["sup", "yes?", "get lost!"], correctAnswer: 0)
+
     
     // Question Label
     @IBOutlet weak var questionLabel: UILabel!
-    
     @IBOutlet weak var categoryLabel: UILabel!
-        
+    
+    @IBOutlet var answerButtons: [UIButton]!
+    
+    let shapeLayer = CAShapeLayer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryLabel.text = displayCategory
         newQuestion()
-//        categoryQuestion()
-//        countdown()
+        
+        for button in answerButtons {
+            button.layer.cornerRadius = 8
+        }
+
+        let positionView = CGPoint(x: 30, y: 100)
+        let trackLayer = CAShapeLayer()
+        
+        let progressPath = UIBezierPath(arcCenter: positionView, radius: 20, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi, clockwise: true)
+        
+        // Create a progress trackershade circle
+        trackLayer.path = progressPath.cgPath
+        
+        trackLayer.strokeColor = UIColor.lightGray.cgColor
+        trackLayer.lineWidth = 5
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.lineCap = CAShapeLayerLineCap.round
+        
+        view.layer.addSublayer(trackLayer)
+        
+        // Create a progress circle
+        shapeLayer.path = progressPath.cgPath
+        
+        shapeLayer.strokeColor = categoryLabel.backgroundColor?.cgColor
+        shapeLayer.lineWidth = 5
+        shapeLayer.strokeEnd = 0
+        shapeLayer.fillColor = UIColor.clear.cgColor
+        shapeLayer.lineCap = CAShapeLayerLineCap.round
+        view.layer.addSublayer(shapeLayer)
+        
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(activateTap)))
+
+    }
+    // Animate the circle
+    @objc private func activateTap() {
+        print("Attempting stroke animation")
+        
+        let basicAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        basicAnimation.duration = 10
+        basicAnimation.toValue = 1
+        basicAnimation.fillMode = CAMediaTimingFillMode.forwards
+        basicAnimation.isRemovedOnCompletion = false
+        
+        shapeLayer.add(basicAnimation, forKey: "basicaAnimationKey")
+        
     }
     
-    // Buttons, linked with tags
-    @IBAction func answerButtons(_ sender: UIButton) {
+    // All answer buttons connected. If button is tapped checks right answer and calls for next question
+    @IBAction func answerButtonsTapped(_ sender: UIButton) {
         if (sender.tag == Int(rightAnswerPlacement)){
             print("CORRECT!")
             points += 1
@@ -98,15 +133,11 @@ class GameViewController: UIViewController {
         
     }
     
-    
-    
-    
-    
-    
     func newQuestion() {
 //        questionLabel.text = questions[currentQuestion]
         
         switch displayCategory {
+            
         case "Videogames":
             print("Switch works 1")
             questionLabel.text = gameQuestions[currentQuestion]
@@ -153,7 +184,7 @@ class GameViewController: UIViewController {
             currentQuestion += 1
 
         case "Sport":
-            print("Switch works 2")
+            print("Switch works 3")
             questionLabel.text = sportQuestions[currentQuestion]
             rightAnswerPlacement = arc4random_uniform(3)+1
             categoryLabel.backgroundColor = UIColor.gray
@@ -176,7 +207,7 @@ class GameViewController: UIViewController {
             currentQuestion += 1
 
         case "Geography":
-            print("Switch works 2")
+            print("Switch works 4")
             questionLabel.text = geographyQuestions[currentQuestion]
             rightAnswerPlacement = arc4random_uniform(3)+1
             categoryLabel.backgroundColor = UIColor.systemGreen
@@ -200,53 +231,11 @@ class GameViewController: UIViewController {
 
         default:
             print("No category selected")
+
         }
-        
-//        rightAnswerPlacement = arc4random_uniform(3)+1
-//
-//        var button: UIButton = UIButton()
-//
-//        var x = 1
-//
-//        for i in 1...4 {
-//            button = view.viewWithTag(i) as! UIButton
-//
-//            if (i == rightAnswerPlacement) {
-//                button.setTitle(gameAnswers[currentQuestion][0], for: .normal)
-//            } else {
-//                button.setTitle(gameAnswers[currentQuestion][x], for: .normal)
-//                x += 1
-//
-//            }
-//        }
-//        currentQuestion += 1
+
     }
     
-
-    // func for questions called using a switch/if statements, if the category is selected then call the correct questions
-//
-//    func categoryQuestion() {
-//
-//        switch displayCategory {
-//        case "Category 1":
-//            print("Switch works 1")
-//
-//        case "Category 2":
-//            print("Switch works 2")
-//
-//        case "Category 3":
-//            print("Switch works 2")
-//
-//        case "Category 4":
-//            print("Switch works 2")
-//        default:
-//            print("No category selected")
-//        }
-//
-////        if (displayCategory == "Category 2") {
-////            print("test works")
-////        }
-//    }
     
 
 }

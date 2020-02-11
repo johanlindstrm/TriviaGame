@@ -27,6 +27,7 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
         let ViewController = segue.destination as! GameViewController
         if let category = selectedCategories {
             ViewController.displayCategory = category
+            print("Segue from category")
         }
     }
     

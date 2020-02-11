@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0429838823F02B8500D06B81 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429838723F02B8500D06B81 /* UIButtonExtension.swift */; };
+		0429838A23F0304F00D06B81 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429838923F0304F00D06B81 /* CircularProgressView.swift */; };
 		042D96F823E0DC8500B456F3 /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D96F723E0DC8500B456F3 /* StartViewController.swift */; };
 		042D96FA23E0DE7300B456F3 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D96F923E0DE7300B456F3 /* HomeViewController.swift */; };
 		042D96FC23E177B200B456F3 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D96FB23E177B200B456F3 /* Question.swift */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0429838723F02B8500D06B81 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
+		0429838923F0304F00D06B81 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		042D96F723E0DC8500B456F3 /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		042D96F923E0DE7300B456F3 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		042D96FB23E177B200B456F3 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -109,18 +113,20 @@
 		0458F6D923D19EDC00D6FD35 /* TriviaGame */ = {
 			isa = PBXGroup;
 			children = (
+				0458F6E023D19EDC00D6FD35 /* Main.storyboard */,
+				0429838923F0304F00D06B81 /* CircularProgressView.swift */,
+				042D96F723E0DC8500B456F3 /* StartViewController.swift */,
+				042D96F923E0DE7300B456F3 /* HomeViewController.swift */,
+				0464A4BF23DA5DB700B18D2E /* CategoryViewController.swift */,
+				0458F6DE23D19EDC00D6FD35 /* GameViewController.swift */,
+				0464A4BD23D916ED00B18D2E /* ScoreViewController.swift */,
 				0458F6DA23D19EDC00D6FD35 /* AppDelegate.swift */,
 				0458F6DC23D19EDC00D6FD35 /* SceneDelegate.swift */,
-				0458F6E023D19EDC00D6FD35 /* Main.storyboard */,
-				042D96F923E0DE7300B456F3 /* HomeViewController.swift */,
-				042D96F723E0DC8500B456F3 /* StartViewController.swift */,
-				0464A4BF23DA5DB700B18D2E /* CategoryViewController.swift */,
-				0464A4BD23D916ED00B18D2E /* ScoreViewController.swift */,
-				0458F6DE23D19EDC00D6FD35 /* GameViewController.swift */,
 				042D96FB23E177B200B456F3 /* Question.swift */,
 				0458F6E323D19EDE00D6FD35 /* Assets.xcassets */,
 				0458F6E523D19EDE00D6FD35 /* LaunchScreen.storyboard */,
 				0458F6E823D19EDE00D6FD35 /* Info.plist */,
+				0429838723F02B8500D06B81 /* UIButtonExtension.swift */,
 			);
 			path = TriviaGame;
 			sourceTree = "<group>";
@@ -279,8 +285,10 @@
 				0458F6DF23D19EDC00D6FD35 /* GameViewController.swift in Sources */,
 				0458F6DB23D19EDC00D6FD35 /* AppDelegate.swift in Sources */,
 				0458F6DD23D19EDC00D6FD35 /* SceneDelegate.swift in Sources */,
+				0429838823F02B8500D06B81 /* UIButtonExtension.swift in Sources */,
 				0464A4BE23D916ED00B18D2E /* ScoreViewController.swift in Sources */,
 				042D96FA23E0DE7300B456F3 /* HomeViewController.swift in Sources */,
+				0429838A23F0304F00D06B81 /* CircularProgressView.swift in Sources */,
 				042D96F823E0DC8500B456F3 /* StartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
