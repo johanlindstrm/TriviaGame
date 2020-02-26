@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
+class CategoryVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
 
     @IBOutlet weak var categoryPicker: UIPickerView!
     
@@ -20,11 +20,12 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
         super.viewDidLoad()
         categoryPicker.dataSource = self
         categoryPicker.delegate = self
+        
         // Do any additional setup after loading the view.
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ViewController = segue.destination as! GameViewController
+        let ViewController = segue.destination as! GameVC
         if let category = selectedCategories {
             ViewController.displayCategory = category
             print("Segue from category")
@@ -45,10 +46,19 @@ class CategoryViewController: UIViewController, UIPickerViewDataSource, UIPicker
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCategories = categories[row] as String
-
+    
+        categoryPicker.reloadAllComponents()
+        
         print(selectedCategories!)
     }
+    
+    // göt en knapp och få den att skicka till game med en random string från categoryn
+//    func randomCategory() {
+//        var randomCategory = categories.randomElement()
+//
+//
+//        print (randomCategory)
+//    }
 
-
-
+    
 }
