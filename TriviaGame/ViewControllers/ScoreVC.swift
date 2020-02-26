@@ -10,27 +10,34 @@ import UIKit
 
 class ScoreVC: UIViewController {
 
+    let defaults = UserDefaults(suiteName: "com.Trivia.Game")
+    
     @IBOutlet weak var scoreLabel: UILabel!
     
     @IBOutlet weak var scoreProgressView: CircularProgressView!
     @IBOutlet weak var backButton: UIButton!
 //    @IBOutlet weak var trophyImage: UIImageView!
+//    var sumOfPoints = String()
     var sumOfPoints = String()
+    
+    
 //    var moviePoints = String()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        scoreLabel.text = moviePoints + "/3"
         scoreLabel.text = sumOfPoints + "/3"
 
         print(sumOfPoints)
     
         scoreProgressView.trackColor = UIColor.gray
-//        scoreProgressView.progressColor = UIColor.red
+        
+        updatePoints()
+        
+//        deletePoints()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        scoreProgressView.setProgressWithAnimation(duration: 2, value: Float(sumOfPoints)!)
         checkWin()
     }
     
@@ -51,12 +58,25 @@ class ScoreVC: UIViewController {
         }
     }
     
+        func updatePoints() {
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let HomeViewController = segue.destination as! HomeVC
-        HomeViewController.summaryProgressPoints = String(sumOfPoints)
-        print("sending all points -> HomeVC")
+            if let progress = defaults?.value(forKey: "savedPoints") as? Int {
+                if let sumpoints =  Int(sumOfPoints) {
+                    let progressSum = progress + sumpoints
+                    defaults?.set(progressSum, forKey: "savedPoints")
+                }
+                
+                
+            } else {
+                print("Can't get points")
+            }
+            
+        }
+    
+        func deletePoints() {
+            defaults?.removeObject(forKey: "savedPoints")
+        }
+        
 
-    }
     
 }

@@ -10,65 +10,49 @@ import UIKit
 
 class HomeVC: UIViewController {
 //TODO
-//visa spelarens namn och info
-//Display trophies
-    
-    var summaryProgressPoints: String = ""
-//    var geographyProgressPoints: String = ""
-//    var sportProgressPoints: String = ""
-//    var movieProgressPoints: String = ""
 
-//    @IBOutlet weak var logoutButton: UIButton!
-    
+    let defaults = UserDefaults(suiteName: "com.Trivia.Game")
+    // Saving the progress of the points gathered
+    var summaryProgressPoints: String = ""
+    // Creating a progressbar view circle
     @IBOutlet weak var summaryProgress: CircularProgressView!
+    // Puts the points into numbers 
     @IBOutlet weak var summaryProgressLbl: UILabel!
     
-//    @IBOutlet weak var geographyProgress: CircularProgressView!
-//    @IBOutlet weak var geographyProgressLbl: UILabel!
-//
-//    @IBOutlet weak var sportProgress: CircularProgressView!
-//    @IBOutlet weak var sportProgressLbl: UILabel!
-//
-//    @IBOutlet weak var movieProgress: CircularProgressView!
-//    @IBOutlet weak var movieProgressLbl: UILabel!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        summaryProgressLbl.text = summaryProgressPoints + "/100"
-//        geographyProgressLbl.text = geographyProgressPoints + "/100"
-//        sportProgressLbl.text = sportProgressPoints + "/100"
-//        movieProgressLbl.text = movieProgressPoints + "/100"
-//
-//        geographyProgress.trackColor = UIColor.gray
-//        geographyProgress.progressColor = UIColor.systemGreen
-//
-//        sportProgress.trackColor = UIColor.gray
-//        sportProgress.progressColor = UIColor.black
-//
-//        movieProgress.trackColor = UIColor.gray
-//        movieProgress.progressColor = UIColor.systemPurple
-//
+        
+        //summaryProgressLbl.text = summaryProgressPoints + "/100"
+                
         summaryProgress.trackColor = UIColor.gray
         summaryProgress.progressColor = UIColor.systemRed
-        
+        getProgress()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        summaryProgress.setProgressWithAnimation(duration: 2, value: 1.0)
-//        geographyProgress.setProgressWithAnimation(duration: 2, value: 1.0)
-//        sportProgress.setProgressWithAnimation(duration: 2, value: 1.0)
-//        movieProgress.setProgressWithAnimation(duration: 2, value: 1.0)
+//        summaryProgress.setProgressWithAnimation(duration: 2, value: 1.0)
+//        animatedProgress()
 
+       }
+       
+    // Getting the points from the ScoreVC to show the sum of the progress
+    func getProgress() {
+        if let data = defaults?.value(forKey: "savedPoints") as? Int {
+       
+            summaryProgressPoints = String(data)
+            summaryProgressLbl.text = summaryProgressPoints + "/100"
+            
+        } else {
+            print("No points read")
+            summaryProgressLbl.text = "0/100"
+            
+        }
     }
     
-    @IBAction func testTapped(_ sender: UIButton) {
-        summaryProgress.setProgressWithAnimation(duration: 1, value: 0.90)
-//        geographyProgress.setProgressWithAnimation(duration: 1, value: 0.55)
-//        sportProgress.setProgressWithAnimation(duration: 1, value: 0.80)
-//        movieProgress.setProgressWithAnimation(duration: 1, value: 0.25)
-    }
     
+    // Create and show an info button on the top right corner of the HomeVC
     @IBAction func infoButtonTapped(_ sender: UIButton) {
         
         // create the alert
@@ -81,6 +65,37 @@ class HomeVC: UIViewController {
         // show the alert
         self.present(alert, animated: true, completion: nil)
     }
+    
+//    func animatedProgress() {
+//        if summaryProgressPoints < "20" {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 0.2)
+//            print("20 progress")
+//            summaryProgress.progressColor = UIColor.red
+//        } else if summaryProgressPoints < "40" {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 0.4)
+//            summaryProgress.progressColor = UIColor.red
+//            print("40 Progress")
+//        } else if summaryProgressPoints > "60" {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 0.6)
+//            summaryProgress.progressColor = UIColor.red
+//            print("60 Progress")
+//
+//        } else if summaryProgressPoints > "80" {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 0.8)
+//            summaryProgress.progressColor = UIColor.red
+//            print("80 Progress")
+//
+//        } else if summaryProgressPoints == "100" {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 1.0)
+//            summaryProgress.progressColor = UIColor.red
+//            print("100 Progress")
+//
+//
+//        } else {
+//            summaryProgress.setProgressWithAnimation(duration: 2, value: 0.0)
+//
+//        }
+//    }
     
     
     

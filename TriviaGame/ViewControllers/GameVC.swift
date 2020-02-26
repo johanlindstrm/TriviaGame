@@ -7,10 +7,12 @@
 //
 
 import UIKit
-//import CoreData
+
+
 
 class GameVC: UIViewController {
     
+    let defaults = UserDefaults(suiteName: "com.Trivia.Game")
     
     let gameQuestions = ["In the Metroid Series, what is the name of the main protagonist?",
                          "Who is the creator of the Super Mario Bros Series?",
@@ -44,11 +46,11 @@ class GameVC: UIViewController {
                             ["50", "51", "52", "49"],
                             ["Northen Ireland", "Hungary", "Romania", "Yemen"]]
 
-//    struct Question {
-//        var question : String!
-//        var answers : [String]!
-//        var correctAnswer : Int!
-//    }
+    struct Question {
+        var question : String!
+        var answers : [String]!
+        var correctAnswer : Int!
+    }
     
     // Variables
     var currentQuestion = 0
@@ -63,9 +65,6 @@ class GameVC: UIViewController {
     //Set the timer
     var gameTimer : Timer?
     
-//    var gameQuestions = [Question]()
-    
-
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -76,33 +75,49 @@ class GameVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        categoryLabel.text = displayCategory
         newQuestion()
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+//        print(defaults?.dictionary(forKey: "savedPoints"))
+
+//        deletePoints()
         
+       // getPoints()
+        print(points)
+        
+        // Countdown/Timer Object
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        // Draws the timer progress circle
         timerProgressView.trackLayer.lineWidth = 5
         timerProgressView.progressLayer.lineWidth = 5
         timerProgressView.trackColor = UIColor.gray
         timerProgressView.progressColor = (categoryLabel.backgroundColor)!
         
+        // Adds rounded corners to answerbuttons
         for button in answerButtons {
             button.layer.cornerRadius = 8
         }
     }
-    
+    // Starts the animation progress for the timer when the view appears
     override func viewDidAppear(_ animated: Bool) {
-    timerProgressView.setProgressWithAnimation(duration: 11, value: 1.0)
+        timerProgressView.setProgressWithAnimation(duration: 11, value: 1.0)
     }
 
     
-    // funkar på första frågan men crashar inte längre men något händer
+    // skickar vidare points till scoreVC som en string -/3 points
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let ScoreViewController = segue.destination as! ScoreVC
+        ScoreViewController.sumOfPoints = String(points)
+        print("sending points -> ScoreVC")
+    }
+
     
+    
+    //
     @objc func updateCounter() {
-        //example functionality
+
         if counter > -1 {
             timerLabel.text = String(counter)
-            print(counter)
+//            print(counter)
             counter -= 1
         } else {
             performSegue(withIdentifier: "showScore", sender: self)
@@ -110,15 +125,16 @@ class GameVC: UIViewController {
         }
     }
     
-    
 
-    
-    // All answer buttons connected. If button is tapped checks right answer and calls for next question
+    // All answer buttons connected. puts the rightanswerplacement on button tag if that button is pressed points is awarded.
     @IBAction func answerButtonsTapped(_ sender: UIButton) {
         
         if (sender.tag == Int(rightAnswerPlacement)) {
             print("+1 point")
+            
             points += 1
+            
+            
         } else {
             print("no point")
         }        
@@ -136,29 +152,17 @@ class GameVC: UIViewController {
         }
     }
     
-    
-    
-    
-    // Skicka med points för varje enskild kategori och sen skicka poängen till dess separata "progressbarview"
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let ScoreViewController = segue.destination as! ScoreVC
-        ScoreViewController.sumOfPoints = String(points)
-        print("sending points -> ScoreVC")
-    }
-    
-    
-    
-    
-    
 
     
+    //
+    //
     func newQuestion() {
         
         switch displayCategory {
             
         case "Videogames":
             print("Switch works 1")
+            categoryLabel.text = "Videogames"
             questionLabel.text = gameQuestions[currentQuestion]
             categoryLabel.backgroundColor = UIColor.systemBlue
             rightAnswerPlacement = arc4random_uniform(3)+1
@@ -182,6 +186,7 @@ class GameVC: UIViewController {
             
         case "Film/Media":
             print("Switch works 2")
+            categoryLabel.text = "Film/Media"
             questionLabel.text = movieQuestions[currentQuestion]
             rightAnswerPlacement = arc4random_uniform(3)+1
             
@@ -204,6 +209,7 @@ class GameVC: UIViewController {
 
         case "Sport":
             print("Switch works 3")
+            categoryLabel.text = "Sport"
             questionLabel.text = sportQuestions[currentQuestion]
             rightAnswerPlacement = arc4random_uniform(3)+1
             categoryLabel.backgroundColor = UIColor.black
@@ -227,6 +233,7 @@ class GameVC: UIViewController {
 
         case "Geography":
             print("Switch works 4")
+            categoryLabel.text = "Geography"
             questionLabel.text = geographyQuestions[currentQuestion]
             rightAnswerPlacement = arc4random_uniform(3)+1
             categoryLabel.backgroundColor = UIColor.systemGreen

@@ -51,7 +51,14 @@ class CategoryVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         
         print(selectedCategories!)
     }
+    
+    // göt en knapp och få den att skicka till game med en random string från categoryn
+//    func randomCategory() {
+//        var randomCategory = categories.randomElement()
+//
+//
+//        print (randomCategory)
+//    }
 
-
-
+    
 }

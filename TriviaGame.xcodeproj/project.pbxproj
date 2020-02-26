@@ -12,7 +12,6 @@
 		04253BA623FBD16F00B3091F /* QuestionsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04253BA523FBD16F00B3091F /* QuestionsData.swift */; };
 		0429838823F02B8500D06B81 /* UIButtonExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429838723F02B8500D06B81 /* UIButtonExtension.swift */; };
 		0429838A23F0304F00D06B81 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429838923F0304F00D06B81 /* CircularProgressView.swift */; };
-		042D96F823E0DC8500B456F3 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D96F723E0DC8500B456F3 /* LoginVC.swift */; };
 		042D96FA23E0DE7300B456F3 /* HomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D96F923E0DE7300B456F3 /* HomeVC.swift */; };
 		0458F6DB23D19EDC00D6FD35 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458F6DA23D19EDC00D6FD35 /* AppDelegate.swift */; };
 		0458F6DD23D19EDC00D6FD35 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0458F6DC23D19EDC00D6FD35 /* SceneDelegate.swift */; };
@@ -49,7 +48,6 @@
 		04253BA523FBD16F00B3091F /* QuestionsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionsData.swift; sourceTree = "<group>"; };
 		0429838723F02B8500D06B81 /* UIButtonExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExtension.swift; sourceTree = "<group>"; };
 		0429838923F0304F00D06B81 /* CircularProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
-		042D96F723E0DC8500B456F3 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		042D96F923E0DE7300B456F3 /* HomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVC.swift; sourceTree = "<group>"; };
 		0458F6D723D19EDC00D6FD35 /* TriviaGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TriviaGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0458F6DA23D19EDC00D6FD35 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -97,7 +95,6 @@
 		04253B7823F316D000B3091F /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				042D96F723E0DC8500B456F3 /* LoginVC.swift */,
 				042D96F923E0DE7300B456F3 /* HomeVC.swift */,
 				0464A4BF23DA5DB700B18D2E /* CategoryVC.swift */,
 				0458F6DE23D19EDC00D6FD35 /* GameVC.swift */,
@@ -305,7 +302,6 @@
 				0464A4BE23D916ED00B18D2E /* ScoreVC.swift in Sources */,
 				042D96FA23E0DE7300B456F3 /* HomeVC.swift in Sources */,
 				0429838A23F0304F00D06B81 /* CircularProgressView.swift in Sources */,
-				042D96F823E0DC8500B456F3 /* LoginVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
