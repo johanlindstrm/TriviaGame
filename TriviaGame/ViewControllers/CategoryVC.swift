@@ -24,6 +24,7 @@ class CategoryVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
         // Do any additional setup after loading the view.
     }
     
+    // Send the category selected to the GameVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let ViewController = segue.destination as! GameVC
         if let category = selectedCategories {
@@ -46,19 +47,7 @@ class CategoryVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedCategories = categories[row] as String
-    
-        categoryPicker.reloadAllComponents()
-        
         print(selectedCategories!)
     }
-    
-    // göt en knapp och få den att skicka till game med en random string från categoryn
-//    func randomCategory() {
-//        var randomCategory = categories.randomElement()
-//
-//
-//        print (randomCategory)
-//    }
-
     
 }
